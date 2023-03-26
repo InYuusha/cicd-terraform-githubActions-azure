@@ -34,5 +34,11 @@ resource "azurerm_container_group" "container_group" {
       port     =  80
       protocol = "TCP" 
     }
+    image_registry_credential {
+        server = var.IMAGE
+        username = ACR_USERNAME
+        password = ACR_PASSWORD
+
+    }
   }
 }

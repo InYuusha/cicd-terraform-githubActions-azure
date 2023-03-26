@@ -3,6 +3,11 @@ variable "CONTAINER_IMAGE" {
   type = string
 }
 
+variable "IMAGE_SEVER" {
+    description = "image server"
+  type = string
+}
+
 variable "SUBSCRIPTION_ID" {
     type = string
 }

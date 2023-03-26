@@ -1,5 +1,4 @@
 node_modules
-
-
+terraform.tfvars
 terraform/.terraform/
 .terraform*
