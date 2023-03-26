@@ -1,20 +1,8 @@
 name: Build and Deploy Docker Container
-
 on:
   push:
     branches:
       - master
-env:
-  ACR_USERNAME: ${{secrets.ACR_USERNAME}}
-  ACR_PASSWORD: ${{secrets.ACR_PASSWORD}}
-  SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-  TENANT_ID: ${{secrets.TENANT_ID}}
-  CONTAINER_IMAGE: ${{secrets.CONTAINER_IMAGE}}
-  IMAGE_SERVER: ${{secrets.IMAGE_SERVER}}
-  CLIENT_ID: ${{secrets.CLIENT_ID}}
-  CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
-  LOCATION: ${{secrets.LOCATION}}
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -50,9 +38,25 @@ jobs:
         run: terraform init
      
       - name: Terraform plan
-        run: terraform plan -out=plan.tfplan  -input=false
+        run: terraform plan -out=plan.tfplan  -input=false -var ="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
+              -var="ACR_PASSWORD=${{secrets.ACR_PASSWORD}}"
+              -var="SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}}"
+              -var="TENANT_ID=${{secrets.TENANT_ID}}"
+              -var="CONTAINER_IMAGE=${{secrets.CONTAINER_IMAGE}}"
+              -var="IMAGE_SERVER=${{secrets.IMAGE_SERVER}}"
+              -var="CLIENT_ID=${{secrets.CLIENT_ID}}"
+              -var="CLIENT_SECRET=${{secrets.CLIENT_SECRET}}"
+              -var="LOCATION=${{secrets.LOCATION}}"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var ="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
+              -var="ACR_PASSWORD=${{secrets.ACR_PASSWORD}}"
+              -var="SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}}"
+              -var="TENANT_ID=${{secrets.TENANT_ID}}"
+              -var="CONTAINER_IMAGE=${{secrets.CONTAINER_IMAGE}}"
+              -var="IMAGE_SERVER=${{secrets.IMAGE_SERVER}}"
+              -var="CLIENT_ID=${{secrets.CLIENT_ID}}"
+              -var="CLIENT_SECRET=${{secrets.CLIENT_SECRET}}"
+              -var="LOCATION=${{secrets.LOCATION}}"
 
