@@ -38,7 +38,7 @@ jobs:
         run: terraform init
      
       - name: Terraform plan
-        run: terraform plan -out=plan.tfplan  -input=false -var ="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
+        run: terraform plan -out=plan.tfplan  -input=false -var="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
               -var="ACR_PASSWORD=${{secrets.ACR_PASSWORD}}"
               -var="SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}}"
               -var="TENANT_ID=${{secrets.TENANT_ID}}"
@@ -50,7 +50,7 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master'
-        run: terraform apply -auto-approve -input=false -var ="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
+        run: terraform apply -auto-approve -input=false -var="ACR_USERNAME=${{secrets.ACR_USERNAME}}"
               -var="ACR_PASSWORD=${{secrets.ACR_PASSWORD}}"
               -var="SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}}"
               -var="TENANT_ID=${{secrets.TENANT_ID}}"
