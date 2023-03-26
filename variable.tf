@@ -3,7 +3,7 @@ variable "CONTAINER_IMAGE" {
   type = string
 }
 
-variable "IMAGE_SEVER" {
+variable "IMAGE_SERVER" {
     description = "image server"
   type = string
 }
