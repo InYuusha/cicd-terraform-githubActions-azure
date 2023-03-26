@@ -1,0 +1,48 @@
+name: Build and Deploy Docker Container
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: expressazureterraform.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
+
+      - name: Initialize Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.0
+
+      - name: Terraform Init
+        run: |
+          cd terraform
+          terraform init -backend-config="storage_account_name=mytfstate" -backend-config="container_name=tfstate" -backend-config="key=ecs-cluster.tfstate"
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/master'
+        run: |
+          cd terraform
+          terraform apply -auto-approve -var="CONTAINER_IMAGEe=expressazureterraform.azurecr.io/myimage:${{ github.sha }}"
+
