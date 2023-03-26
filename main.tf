@@ -24,7 +24,7 @@ resource "azurerm_container_group" "container_group" {
 
   container {
     name   = "mycontainer"
-    image  = var.CONTAINER_IMAGEe
+    image  = var.CONTAINER_IMAGE
     cpu    = "1"
     memory = "1.5"
 

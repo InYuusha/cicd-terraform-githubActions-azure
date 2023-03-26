@@ -5,4 +5,4 @@ TENANT_ID="bbc2175e-52d1-4ed6-bc3a-3ac479f5839d"
 
 LOCATION="jioindiacentral"
 
-CONTAINER_IMAGEe="expressazureterraform.azurecr.io/myimage:latest"
+CONTAINER_IMAGE="expressazureterraform.azurecr.io/myimage:latest"
