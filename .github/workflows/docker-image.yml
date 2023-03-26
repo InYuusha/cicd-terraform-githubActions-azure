@@ -31,7 +31,7 @@ jobs:
           tags: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
 
       - name: Initialize Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: 1.4.2
          
