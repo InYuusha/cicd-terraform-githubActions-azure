@@ -4,20 +4,21 @@ on:
   push:
     branches:
       - master
+env:
+  ACR_USERNAME: ${{secrets.ACR_USERNAME}}
+  ACR_PASSWORD: ${{secrets.ACR_PASSWORD}}
+  SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
+  TENANT_ID: ${{secrets.TENANT_ID}}
+  CONTAINER_IMAGE: ${{secrets.CONTAINER_IMAGE}}
+  IMAGE_SERVER: ${{secrets.IMAGE_SERVER}}
+  CLIENT_ID: ${{secrets.CLIENT_ID}}
+  CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
+  LOCATION: ${{secrets.LOCATION}}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      ACR_USERNAME: ${{secrets.ACR_USERNAME}}
-      ACR_PASSWORD: ${{secrets.ACR_PASSWORD}}
-      SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-      TENANT_ID: ${{secrets.TENANT_ID}}
-      CONTAINER_IMAGE: ${{secrets.CONTAINER_IMAGE}}
-      IMAGE_SERVER: ${{secrets.IMAGE_SERVER}}
-      CLIENT_ID: ${{secrets.CLIENT_ID}}
-      CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
-      LOCATION: ${{secrets.LOCATION}}
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -48,7 +49,7 @@ jobs:
       - name: Terraform Init
         run: terraform init
      
-      - name: Terraform plan   
+      - name: Terraform plan
         run: terraform plan -out=plan.tfplan  -input=false
 
       - name: Terraform Apply
