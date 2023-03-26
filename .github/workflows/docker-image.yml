@@ -36,9 +36,7 @@ jobs:
           terraform_version: 1.1.0
 
       - name: Terraform Init
-        run: |
-          cd terraform
-          terraform init -backend-config="storage_account_name=mytfstate" -backend-config="container_name=tfstate" -backend-config="key=ecs-cluster.tfstate"
+        run: terraform init -backend-config="storage_account_name=mytfstate" -backend-config="container_name=tfstate" -backend-config="key=ecs-cluster.tfstate"
      
       - name: Terraform plan
         run: terraform plan -out=tfplan
