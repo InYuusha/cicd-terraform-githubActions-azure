@@ -5,6 +5,7 @@ variable "ACR_USERNAME" {
 
 variable "ACR_PASSWORD" { 
     type=string
+    sensitive=true
 }
 variable "CONTAINER_IMAGE" {
     description = "container image variable"
@@ -22,6 +23,7 @@ variable "SUBSCRIPTION_ID" {
 
 variable "TENANT_ID" {
     type = string
+    sensitive=true
 }
 
 variable "LOCATION" {
@@ -30,7 +32,9 @@ variable "LOCATION" {
 
 variable "CLIENT_ID" {
     type= string
+    sensitive=true
 }
 variable "CLIENT_SECRET" {
     type=string
+    sensitive=true
 }
