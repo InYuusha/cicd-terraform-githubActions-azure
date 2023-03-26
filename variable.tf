@@ -1,3 +1,10 @@
+variable "ACR_USERNAME"{
+    type=string
+}
+
+variable "ACR_PASSWORD"{
+    type=string
+}
 variable "CONTAINER_IMAGE" {
     description = "container image variable"
   type = string
