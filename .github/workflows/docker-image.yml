@@ -64,5 +64,5 @@ jobs:
           export TF_VAR_CLIENT_ID=${{secrets.CLIENT_ID}}
           export TF_VAR_CLIENT_SECRET=${{secrets.CLIENT_SECRET}}
           export TF_VAR_CONTAINER_IMAGE=expressazureterraform.azurecr.io/myimage:${{ github.sha }}
-          terraform apply -auto-approve -input=false -var "container_image=expressazureterraform.azurecr.io/myimage:${{ github.sha }}"
+          terraform apply -auto-approve -input=false
 
