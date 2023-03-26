@@ -8,12 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-      TENANT_ID: ${{secrets.TENANT_ID}} 
-      LOCATION: ${{secrets.LOCATION}}
-      CONTAINER_IMAGE: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -36,32 +30,18 @@ jobs:
           push: true
           tags: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
 
-      - name: 'Terraform Format'
-        uses: hashicorp/terraform-github-actions@master
+      - name: Initialize Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
         with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: 'fmt'
-          tf_actions_working_dir: "./terraform"
+          terraform_version: 1.4.2
          
-      - name: 'Terraform Init'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: "./terraform"
+      - name: Terraform Init
+        run: terraform init
      
-      - name: 'Terraform Plan'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: "./terraform"
- 
+      - name: Terraform plan   
+        run: terraform plan -out=plan.tfplan -var-file="terraform.tfvars" -input=false
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: "./terraform"
+        run: terraform apply -auto-approve -var-file="terraform.tfvars" -input=false
+
