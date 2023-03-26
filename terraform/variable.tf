@@ -1,4 +1,4 @@
-variable "CONTAINER_IMAGEe" {
+variable "CONTAINER_IMAGE" {
     description = "container image variable"
   type = string
 }
