@@ -33,7 +33,7 @@ jobs:
       - name: Initialize Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.1.0
+          terraform_version: 1.4.2
          
       - name: Terraform Init
         run: terraform init -backend-config="storage_account_name=mytfstate" -backend-config="container_name=tfstate" -backend-config="key=ecs-cluster.tfstate"
