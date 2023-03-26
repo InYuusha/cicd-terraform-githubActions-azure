@@ -24,7 +24,7 @@ resource "azurerm_container_group" "container_group" {
   ip_address_type     = "Public"
   os_type             = "Linux"
   dns_name_label = "mycontainergroup"
-  
+
   container {
     name   = "mycontainer"
     image  = var.CONTAINER_IMAGE
@@ -35,12 +35,12 @@ resource "azurerm_container_group" "container_group" {
       port     =  80
       protocol = "TCP" 
     }
-
-    image_registry_credential {
+  }
+  
+  image_registry_credential {
         server = var.IMAGE_SERVER
         username = var.ACR_USERNAME
         password = var.ACR_PASSWORD
 
     }
-  }
 }
