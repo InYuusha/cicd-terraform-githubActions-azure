@@ -38,9 +38,8 @@ jobs:
       - name: Terraform Init
         run: terraform init
      
-      - name: Terraform plan -var-file="terraform.tfvars"
-        
-        run: terraform plan
+      - name: Terraform plan 
+        run: terraform plan -var-file="terraform.tfvars"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master'
