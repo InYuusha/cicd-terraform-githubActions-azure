@@ -39,7 +39,7 @@ jobs:
         run: terraform init -backend-config="storage_account_name=mytfstate" -backend-config="container_name=tfstate" -backend-config="key=ecs-cluster.tfstate"
      
       - name: Terraform plan 
-        run: terraform plan -out=tfplan -var="CONTAINER_IMAGEe=expressazureterraform.azurecr.io/myimage:${{ github.sha }} \
+        run: terraform plan -out=tfplan -var="CONTAINER_IMAGE=expressazureterraform.azurecr.io/myimage:${{ github.sha }} \
            SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}} \
            TENANT_ID=${{secrets.TENANT_ID}} \
            LOCATION=${{secrets.LOCATION}}"
@@ -48,7 +48,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           cd terraform
-          terraform apply -auto-approve -var="CONTAINER_IMAGEe=expressazureterraform.azurecr.io/myimage:${{ github.sha }} \
+          terraform apply -auto-approve -var="CONTAINER_IMAGE=expressazureterraform.azurecr.io/myimage:${{ github.sha }} \
            SUBSCRIPTION_ID=${{secrets.SUBSCRIPTION_ID}} \
            TENANT_ID=${{secrets.TENANT_ID}} \
            LOCATION=${{secrets.LOCATION}}"
