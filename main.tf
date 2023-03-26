@@ -35,9 +35,9 @@ resource "azurerm_container_group" "container_group" {
       protocol = "TCP" 
     }
     image_registry_credential {
-        server = var.IMAGE
-        username = ACR_USERNAME
-        password = ACR_PASSWORD
+        server = var.IMAGE_SERVER
+        username = var.ACR_USERNAME
+        password = var.ACR_PASSWORD
 
     }
   }
