@@ -38,21 +38,12 @@ jobs:
       - name: Terraform Init
         run: terraform init
      
-      - name: Terraform plan 
-        env:
-          SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-          TENANT_ID: ${{secrets.TENANT_ID}} 
-          LOCATION: ${{secrets.LOCATION}}
-          CONTAINER_IMAGE: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
+      - name: Terraform plan -var-file="terraform.tfvars"
+        
         run: terraform plan
 
       - name: Terraform Apply
-        env:
-          SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-          TENANT_ID: ${{secrets.TENANT_ID}} 
-          LOCATION: ${{secrets.LOCATION}}
-          CONTAINER_IMAGE: expressazureterraform.azurecr.io/myimage:${{ github.sha }}
         if: github.ref == 'refs/heads/master'
         run: |
           cd terraform
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var-file="terraform.tfvars"
