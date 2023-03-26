@@ -6,3 +6,6 @@ TENANT_ID="bbc2175e-52d1-4ed6-bc3a-3ac479f5839d"
 LOCATION="jioindiacentral"
 
 CONTAINER_IMAGE="expressazureterraform.azurecr.io/myimage:latest"
+
+CLIENT_ID="53bc8a85-3a33-46fe-8dd3-6255d4ba126a"
+CLIENT_SECRET="17A8Q~afb9LplfgXnQJv-DGxOXBVFZRBT0gUFdz0"
