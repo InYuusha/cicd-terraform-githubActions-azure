@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:true}))
 
 //routes
 app.get('/',(req,res)=>{
-    res.status(200).send('Yiee API Up and Running...')
+    res.status(200).send('Hurray !!! API Up and Running...')
 })
 app.use('/task' ,task)
 
