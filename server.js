@@ -10,11 +10,11 @@ app.use(express.urlencoded({extended:true}))
 
 //routes
 app.get('/',(req,res)=>{
-    res.status(200).send('API Up and Running...')
+    res.status(200).send('Yiee API Up and Running...')
 })
 app.use('/task' ,task)
 
 
 //listen
-const port = 3000||process.env.PORT;
+const port = 80||process.env.PORT;
 app.listen(port,()=>console.log(`Server is running on port ${port}`))
