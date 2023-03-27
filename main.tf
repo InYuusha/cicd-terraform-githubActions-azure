@@ -7,6 +7,12 @@ terraform {
       version = "=3.0.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  =    "demo"
+    storage_account_name     = "statestore"
+    container_name           = "mycontainer"
+    key                      = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
