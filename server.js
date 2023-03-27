@@ -9,6 +9,9 @@ const app = express()
 app.use(express.urlencoded({extended:true}))
 
 //routes
+app.get('/',(req,res)=>{
+    res.status(200).send('API Up and Running...')
+})
 app.use('/task' ,task)
 
 
