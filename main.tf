@@ -12,7 +12,7 @@ terraform {
     subscription_id      = var.subscription_id
     tenant_id    = var.TENANT_ID
     resource_group_name  =    "demo"
-    storage_account_name     = "statestore"
+    storage_account_name     = "statestore001"
     container_name           = "mycontainer"
     key                      = "terraform.tfstate"
   }
