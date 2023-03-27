@@ -1,5 +1,4 @@
 
-
 terraform {
   required_providers {
     azurerm = {
@@ -8,7 +7,7 @@ terraform {
     }
   }
   backend "azurerm" {
-    subscription_id = var.SUBSCRIPTION_ID
+    subscription_id =     "1f780fbe-b52a-440d-89ef-7e34e7cc4a21"
     resource_group_name  =    "demo"
     storage_account_name     = "statestore"
     container_name           = "mycontainer"
