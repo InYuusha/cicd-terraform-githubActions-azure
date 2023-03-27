@@ -7,7 +7,9 @@ terraform {
     }
   }
   backend "azurerm" {
-    subscription_id =     "1f780fbe-b52a-440d-89ef-7e34e7cc4a21"
+    client_id            = var.client_id
+    client_secret        = var.client_secret
+    subscription_id      = var.subscription_id
     resource_group_name  =    "demo"
     storage_account_name     = "statestore"
     container_name           = "mycontainer"
