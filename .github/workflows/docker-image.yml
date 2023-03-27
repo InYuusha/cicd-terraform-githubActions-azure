@@ -37,7 +37,7 @@ jobs:
           terraform_version: 1.4.2
          
       - name: Terraform Init
-        run: terraform init -backend-config="client_id=${{secrets.CLIENT_ID}}" -backend-config="client_secret=${{secrets.CLIENT_SECRET}}" -backend-config="subscription_id=${{secrets.SUBSCRIPTION_ID}}"
+        run: terraform init -backend-config="tenant_id=${{secrets.TENANT_ID}}" -backend-config="client_id=${{secrets.CLIENT_ID}}" -backend-config="client_secret=${{secrets.CLIENT_SECRET}}" -backend-config="subscription_id=${{secrets.SUBSCRIPTION_ID}}"
      
       - name: Terraform plan
         run: | 

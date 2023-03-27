@@ -10,6 +10,7 @@ terraform {
     client_id            = var.client_id
     client_secret        = var.client_secret
     subscription_id      = var.subscription_id
+    tenant_id    = var.TENANT_ID
     resource_group_name  =    "demo"
     storage_account_name     = "statestore"
     container_name           = "mycontainer"
